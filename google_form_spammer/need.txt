@@ -1,0 +1,67 @@
+Fields
+------
+- first name entry.1087930455:
+- middle name entry.1053893224:
+- last name entry.996642920:
+- day-month-year entry.253203409:
+- ssn (000-00-0000) entry.58615951:
+-license number entry.1044347020:
+-license issued date entry.305968062:
+-license expiry date entry.412762834:
+-license issuing state entry.624979867:
+-driver height entry.772765424:
+-driver weight entry.1373129095:
+-address entry.72381656:
+-city entry.1239012354:
+-state entry.1523547596:
+-zip code entry.904681537:
+-phone number entry.1362139680: 
+-gender (pick male, female, or prefer not to say) ( entry.276154064: Prefer not to say
+						    entry.276154064_sentinel: )
+
+link
+------
+. https://docs.google.com/forms/d/1y9y5UGzcjYL46LOVhMBVdAXeQ-UAIe6XBRqb6YW3tF8/viewform?edit_requested=true
+
++ https://docs.google.com/forms/d/e/1FAIpQLSeP_xpcQ7P0Uan_p-hGBCP7Ipwm4FCXXQTNDUvyjqG4u42Vmg/formResponse
+
+
+form response
+------
+
+entry.1087930455: name
+entry.1053893224: middle
+entry.996642920: last
+entry.253203409: day-month-year
+entry.58615951: 000-00-0000
+entry.1044347020: lic num
+entry.305968062: lic date
+entry.412762834: lic exp date
+entry.624979867: lic state
+entry.772765424: driv height
+entry.1373129095: drive weight
+entry.72381656: add
+entry.1239012354: city
+entry.1523547596: state
+entry.904681537: zip
+entry.1362139680: phone
+entry.276154064: Male
+entry.276154064_sentinel: 
+fvv: 1
+draftResponse: [null,null,"-2814579426008475198"]
+pageHistory: 0
+fbzx: -2814579426008475198
+
+commands
+-------
+
++ for names
+curl https://babynames.com/blogs/names/100-trending-names-of-2020/ | grep "<td>" | grep -E -v '[0-9.-]' | awk -F '[><]' {'print$3'} > test.json
+curl https://babynames.com/blogs/names/100-trending-names-of-2020/ | grep "<td>" | grep -E -v '[0-9.-]' | cut -d '>' -f 2 | cut -d '<' -f 1 > first.json
+curl https://babynames.com/blogs/names/100-trending-names-of-2020/ | grep "<td>" | grep -E -v '[0-9.-]' | awk -F '[><]' {'print$3'} | grep -v '/' > test.json
+curl https://www23.statcan.gc.ca/imdb/p3VD.pl\?Function\=getVD\&TVD\=53971 | grep -iE '<td headers="un_.. un_4">..</td>' | awk -F '[><]' {'print$3'} > states.json
+
+
+
+^([A-Za-z]+)$
+"$1",
